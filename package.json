@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/rallias/pam-faithful/issues"
   },
-  "homepage": "https://github.com/rallias/pam-faithful#readme"
+  "homepage": "https://github.com/rallias/pam-faithful#readme",
+  "dependencies": {
+    "node-addon-api": "^4.2.0"
+  }
 }
