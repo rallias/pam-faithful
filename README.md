@@ -4,7 +4,7 @@ An interface to PAM for Node.JS
 
 ## Usage:
 
-* pam_handle = pam_faithful.pam_start(service_name, user, conv)
+* pam_faithful.pam_start(service_name, user, conv): Promise<pam_handle>
 
     Adaptation of [pam_start(3)](https://www.freebsd.org/cgi/man.cgi?query=pam_start&sektion=3) to NodeJS.
 
@@ -43,3 +43,41 @@ An interface to PAM for Node.JS
     * `pam_faithful.PAM_BUF_ERR`: Memory buffer error.
 
     * `pam_faithful.PAM_SYSTEM_ERR`: System error.
+
+* pam_handle.pam_authenticate(flags): Promise<void>
+
+    Adaptation of [pam_authentication(3)](https://www.freebsd.org/cgi/man.cgi?query=pam_authenticate&sektion=3&format=html) to NodeJS.
+
+    The pam_authenticate() function attempts to authenticate the user associated with the pam context specified by the pam_handle.
+
+    The application is free to call pam_authenticate() as many times as it wishes, but some modules may maintain an internal retry counter and re-turn PAM_MAXTRIES when it exceeds some preset or  hardcoded limit.
+
+    * The `flags` argument is the binary or of zero or more of the following values:
+    
+        * `pam_faithful.PAM_SILENT`: Do not emit any messages.
+
+        * `pam_faithful.PAM_DISABLE_NULL_AUTHTOK`: Fail if the user's authentication token is null.
+        
+    If there is an error thrown, the value is as follows:
+    
+    * `pam_faithful.PAM_ABORT`: General failure.
+
+    * `pam_faithful.PAM_AUTHINFO_UNAVAIL`: Authentication information is unavailable.
+
+    * `pam_faithful.PAM_AUTH_ERR`: Authentication error.
+
+    * `pam_faithful.PAM_BUF_ERR`: Memory buffer error.
+
+    * `pam_faithful.PAM_CONV_ERR`: Conversation failure.
+
+    * `pam_faithful.PAM_CRED_INSUFFICIENT`: Insufficient credentials.
+
+    * `pam_faithful.PAM_MAXTRIES`: Maximum number of tries exceeded.
+
+    * `pam_faithful.PAM_PERM_DENIED`: Permission denied.
+
+    * `pam_faithful.PAM_SERVICE_ERR`: Error in service module.
+
+    * `pam_faithful.PAM_SYSTEM_ERR`: System error.
+
+    * `pam_faithful.PAM_USER_UNKNOWN`: Unknown user.
